@@ -1,22 +1,15 @@
-// counter.js
+// SimpleComponent.js
 
 export default {
-  template: `
-    <div>
-      <span class="count">{{ count }}</span>
-      <button @click="increment">Increment</button>
-    </div>
+    template: `
+	    <v-app>
+		    <v-container>
+			    <v-layout>
+				    <v-flex>
+					    <h1>hello</h1>
+				    </v-flex>
+			    </v-layout>
+		    </v-container>
+	    </v-app>
   `,
-
-  data () {
-    return {
-      count: 0
-    }
-  },
-
-  methods: {
-    increment () {
-      this.count++
-    }
-  }
 }

@@ -1,25 +1,39 @@
 // Import the mount() method from the test utils
 // and the component you want to test
-import { mount } from '@vue/test-utils'
-import Counter from './counter'
+import { createLocalVue,shallowMount } from '@vue/test-utils'
+import SimpleComponent from './SimpleComponent'
+import Vuetify from 'vuetify'
+import Vuex from 'vuex'
 
-describe('Counter', () => {
-  // Now mount the component and you have the wrapper
-  const wrapper = mount(Counter)
+describe('SimpleComponent', () => {
+    it('example test with vuetify first', () => {
+        let localVue = createLocalVue()
+        localVue.use(Vuetify)
+        localVue.use(Vuex)
 
-  it('renders the correct markup', () => {
-    expect(wrapper.html()).toContain('<span class="count">0</span>')
-  })
+        const wrapper = shallowMount(SimpleComponent, {localVue})
 
-  // it's also easy to check for the existence of elements
-  it('has a button', () => {
-    expect(wrapper.contains('button')).toBe(true)
-  })
+        console.log("-- Vuetify first --")
+        console.log(wrapper.html())
+    })
 
-  it('button should increment the count', () => {
-    expect(wrapper.vm.count).toBe(0)
-    const button = wrapper.find('button')
-    button.trigger('click')
-    expect(wrapper.vm.count).toBe(1)
-  })
+    it('example test with vuetify second', () => {
+        let localVue = createLocalVue()
+        localVue.use(Vuex)
+        localVue.use(Vuetify)
+
+        const wrapper = shallowMount(SimpleComponent, {localVue})
+
+        console.log("-- Vuetify second --")
+        console.log(wrapper.html())
+    })
+
+    it('example test without vuetify', () => {
+        let localVue = createLocalVue()
+
+        const wrapper = shallowMount(SimpleComponent, {localVue})
+
+        console.log("-- Without Vuetify --")
+        console.log(wrapper.html())
+    })
 })
